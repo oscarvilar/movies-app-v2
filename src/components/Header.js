@@ -65,6 +65,15 @@ export default function Header(props) {
                     ))}
                   </div>
                 </div>
+                {/* SearchBox */}
+                <div className='search-container'>
+                  <input 
+                      className='form-control ' 
+                      placeholder='Escribe para buscar...' 
+                      onChange = {(e)=>props.setSearchValue(e.target.value)}
+                      value={props.value}>
+                  </input>
+                </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button

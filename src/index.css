@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-color: #303030;
+    color: white;
+}
+
+.card{
+    background-color: rgb(59, 57, 57);
+}
+
+.search-container{
+    text-align: center;
+    color: #303030;
+}
