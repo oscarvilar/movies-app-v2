@@ -8,6 +8,7 @@ import SearchBox from './components/SearchBox'
 function App() {
   const [movies, setMovies] = useState([]);
   const [searchValue, setSearchValue] = useState('');
+  const [favourites, setFavourites] = useState([]);
   console.log(searchValue);
 
   const getMovieRequest = async(searchValue) => {
@@ -24,11 +25,28 @@ function App() {
     getMovieRequest(searchValue);
   },[searchValue])
 
+  useEffect(() => {
+    const movieFavourites = JSON.parse(localStorage.getItem('react-movie-app-favourites'));
+    setFavourites(movieFavourites);
+  },[])
+
+  const saveToLocalStorage = (items) =>{
+    localStorage.setItem('react-movie-app-favourites', JSON.stringify(items))
+}
+
+  const saveFav = (movie) =>{
+    console.log(movie)
+    const newFavouriteList = [...favourites, movie]
+    setFavourites(newFavouriteList);
+    saveToLocalStorage(newFavouriteList);
+  }
+
+
   return (
     <div>
       <Header searchValue = {searchValue} setSearchValue = {setSearchValue}/>
       {/* <SearchBox searchValue = {searchValue} setSearchValue = {setSearchValue}/> */}
-      <MovielList movies = {movies}></MovielList>
+      <MovielList movies = {movies}  handleSaveFav = {saveFav} ></MovielList>
     </div>
   );
 }
