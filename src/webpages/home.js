@@ -54,7 +54,6 @@ function Home() {
   return (
     <div>
       {/* <Header searchValue = {searchValue} setSearchValue = {setSearchValue}/> */}
-      <Header/>
       <SearchBox searchValue = {searchValue} setSearchValue = {setSearchValue} />
       <MovielList movies = {movies}  handleSaveFav = {saveFav} ></MovielList>
     </div>

@@ -5,18 +5,18 @@ import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import React, {useState} from 'react';
 
 const navigation = [
-  { name: 'Inicio', href: '/', current: true },
+  { name: 'Inicio', href: '/', current: false },
   { name: 'Favoritos', href: '/favoritos', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
 ]
+
+console.log();
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 
-export default function Header(props) {
+export default function Header() {
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (

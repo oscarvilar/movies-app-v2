@@ -30,8 +30,9 @@ const Favoritos = () => {
     
       return (
         <div>
-            <Header/>
-            <h1>Pagina Favoritos</h1>
+            <div className='search-container'>
+                <h2 className='text-3xl text-white mt-20 ml-10 mr-10'>Puedes eliminar una película o serie de favoritos haciendo click en la imagen</h2>
+            </div>
             <MovielList movies={favourites} handleSaveFav = {removeFavouriteMovie} />
         </div>
     );
