@@ -4,21 +4,31 @@ import '../index.css';
 import React, {useState,useEffect} from 'react';
 import Header from '../components/Header'
 import SearchBox from '../components/SearchBox'
+import { useRecoilState } from "recoil"
+import { favouritesAtom } from '../atom';
+
+
 
 function Home() {
+
   const [movies, setMovies] = useState([]);
   const [searchValue, setSearchValue] = useState('');
-  const [favourites, setFavourites] = useState([]);
-  console.log(searchValue);
+  const [favourites, setFavourites] = useRecoilState(favouritesAtom);
+  console.log(favourites);
 
   useEffect(() => {
     getMovieRequest(searchValue);
   },[searchValue])
 
-  useEffect(() => {
-    const movieFavourites = JSON.parse(localStorage.getItem('react-movie-app-favourites'));
-    setFavourites(movieFavourites);
-  },[])
+   useEffect(() => { 
+     if (JSON.parse(localStorage.getItem('react-movie-app-favourites')) == null){
+      const movieFavourites = [];
+     }else{
+        const movieFavourites = JSON.parse(localStorage.getItem('react-movie-app-favourites'));
+        setFavourites(movieFavourites);
+    }
+   },[])
+
 
   const getMovieRequest = async(searchValue) => {
     const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=1c06d092`;
@@ -35,7 +45,6 @@ function Home() {
 }
 
   const saveFav = (movie) =>{
-    console.log(movie)
     const newFavouriteList = [...favourites, movie]
     setFavourites(newFavouriteList);
     saveToLocalStorage(newFavouriteList);
@@ -44,7 +53,9 @@ function Home() {
 
   return (
     <div>
-      <Header searchValue = {searchValue} setSearchValue = {setSearchValue}/>
+      {/* <Header searchValue = {searchValue} setSearchValue = {setSearchValue}/> */}
+      <Header/>
+      <SearchBox searchValue = {searchValue} setSearchValue = {setSearchValue} />
       <MovielList movies = {movies}  handleSaveFav = {saveFav} ></MovielList>
     </div>
   );

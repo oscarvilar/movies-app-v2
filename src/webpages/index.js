@@ -8,13 +8,16 @@ import {
 } from "react-router-dom";
 import Home from './home';
 import Favoritos from './favoritos';
+import { RecoilRoot } from 'recoil';
 const Webpages = () => {
     return(
         <Router>
+            <RecoilRoot>
             <Routes>
-            <Route exact path="/" element={<Home />}></Route>
-            <Route path="/favoritos" element={<Favoritos />}></Route> 
-        </Routes>
+                <Route exact path="/" element={<Home />}></Route>
+                <Route path="/favoritos" element={<Favoritos />}></Route> 
+            </Routes>
+            </RecoilRoot>
         </Router>
     );
 };
