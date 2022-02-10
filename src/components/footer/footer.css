@@ -46,9 +46,6 @@
     }
 }
 
-.f{
-    position:absolute;
-    left:0;
-    bottom:0;
-    right:0;
+.cont{
+    min-height: 66vh;
 }

@@ -5,7 +5,7 @@ import React, {useState,useEffect} from 'react';
 import Header from '../components/Header'
 import SearchBox from '../components/SearchBox'
 import { useRecoilState } from "recoil"
-import { favouritesAtom } from '../atom';
+import { favouritesAtom } from '../favAtom';
 
 
 
@@ -52,7 +52,7 @@ function Home() {
 
 
   return (
-    <div>
+    <div className='cont'>
       {/* <Header searchValue = {searchValue} setSearchValue = {setSearchValue}/> */}
       <SearchBox searchValue = {searchValue} setSearchValue = {setSearchValue} />
       <MovielList movies = {movies}  handleSaveFav = {saveFav} ></MovielList>
