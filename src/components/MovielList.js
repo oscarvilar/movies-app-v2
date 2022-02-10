@@ -1,7 +1,6 @@
 import React from 'react';
 
 const MovielList = (props) => {
-  console.log(props);
   return (
     <>
     <div className='container justify-center container mx-auto'>
