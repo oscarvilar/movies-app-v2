@@ -6,7 +6,7 @@ import Header from '../components/Header'
 import SearchBox from '../components/SearchBox'
 import { useRecoilState } from "recoil"
 import { favouritesAtom } from '../favAtom';
-
+import config from '../config.json';
 
 
 function Home() {
@@ -14,7 +14,6 @@ function Home() {
   const [movies, setMovies] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [favourites, setFavourites] = useRecoilState(favouritesAtom);
-  console.log(favourites);
 
   useEffect(() => {
     getMovieRequest(searchValue);
@@ -31,7 +30,7 @@ function Home() {
 
 
   const getMovieRequest = async(searchValue) => {
-    const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=1c06d092`;
+    const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=${config.API_KEY}`;
     const response = await fetch(url);
     const responseJson = await response.json();
 
