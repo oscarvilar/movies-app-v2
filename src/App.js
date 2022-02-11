@@ -1,9 +1,9 @@
 import './App.css';
-import Webpages from './webpages/index';
+import Pages from './pages/index';
 function App() {
   return (
     <div>
-      <Webpages />
+      <Pages />
     </div>
   );
 }
