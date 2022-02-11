@@ -1,19 +1,18 @@
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { favouritesAtom } from '../favAtom';
-import Header from '../components/Header';
 import MovielList from '../components/MovielList';
 
 
 const Favoritos = () => {
     const [favourites, setFavourites] = useRecoilState(favouritesAtom);
-    console.log(favourites);
     
     useEffect(() => {
+        var movieFavourites;
         if (JSON.parse(localStorage.getItem('react-movie-app-favourites')) == null){
-            const movieFavourites = [];
+             movieFavourites = [];
            }else{
-                const movieFavourites = JSON.parse(localStorage.getItem('react-movie-app-favourites'));
+                 movieFavourites = JSON.parse(localStorage.getItem('react-movie-app-favourites'));
                 setFavourites(movieFavourites);
             }
       },[])

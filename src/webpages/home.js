@@ -2,7 +2,6 @@ import '../App.css';
 import MovielList from '../components/MovielList';
 import '../index.css';
 import React, {useState,useEffect} from 'react';
-import Header from '../components/Header'
 import SearchBox from '../components/SearchBox'
 import { useRecoilState } from "recoil"
 import { favouritesAtom } from '../favAtom';
@@ -20,10 +19,11 @@ function Home() {
   },[searchValue])
 
    useEffect(() => { 
+    var movieFavourites;
      if (JSON.parse(localStorage.getItem('react-movie-app-favourites')) == null){
-      const movieFavourites = [];
+      movieFavourites = [];
      }else{
-        const movieFavourites = JSON.parse(localStorage.getItem('react-movie-app-favourites'));
+        movieFavourites = JSON.parse(localStorage.getItem('react-movie-app-favourites'));
         setFavourites(movieFavourites);
     }
    },[])
@@ -44,15 +44,30 @@ function Home() {
 }
 
   const saveFav = (movie) =>{
-    const newFavouriteList = [...favourites, movie]
-    setFavourites(newFavouriteList);
-    saveToLocalStorage(newFavouriteList);
+    if(ifRepeated(movie,favourites)){
+      alert("La pelicula ya esta en la lista de Favoritos");
+    }else {
+      const newFavouriteList = [...favourites, movie]
+      setFavourites(newFavouriteList);
+      saveToLocalStorage(newFavouriteList);
+    }
+
   }
 
+  const ifRepeated = (movie,[]) =>{
+
+    var isRepeated = false;
+
+    for (let i = 0; i < favourites.length; i++) {
+      if(movie.imdbID == favourites[i].imdbID){
+        isRepeated = true;
+      }
+    }
+    return isRepeated;
+  }
 
   return (
     <div className='cont'>
-      {/* <Header searchValue = {searchValue} setSearchValue = {setSearchValue}/> */}
       <SearchBox searchValue = {searchValue} setSearchValue = {setSearchValue} />
       <MovielList movies = {movies}  handleSaveFav = {saveFav} ></MovielList>
     </div>
