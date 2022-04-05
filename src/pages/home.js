@@ -5,7 +5,6 @@ import React, {useState,useEffect} from 'react';
 import SearchBox from '../components/SearchBox'
 import { useRecoilState } from "recoil"
 import { favouritesAtom } from '../favAtom';
-import config from '../config.json';
 
 
 function Home() {
@@ -30,7 +29,7 @@ function Home() {
 
 
   const getMovieRequest = async(searchValue) => {
-    const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=${config.API_KEY}`;
+    const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=${process.env.REACT_APP_API_KEY}`;
     const response = await fetch(url);
     const responseJson = await response.json();
 
